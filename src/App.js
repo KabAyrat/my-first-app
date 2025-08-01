@@ -13,7 +13,6 @@ function App() {
     const [newTodo, setNewTodo] = useState('');
     const [filter, setFilter] = useState(FILTERS.ALL);
 
-    // Сохранение в localStorage при изменении todos
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
     }, [todos]);
@@ -85,7 +84,7 @@ function App() {
         <div className="app">
             <div className="container">
                 <header className="header">
-                    <h1 className="title">📝 Todo List</h1>
+                    <h1 className="title">📝Список дел</h1>
                     <div className="add-todo">
                         <input
                             type="text"

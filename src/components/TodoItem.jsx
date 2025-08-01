@@ -1,28 +1,23 @@
-// src/components/TodoItem.jsx
 import React, { useState } from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 
 const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(todo.text);
-
     const handleEdit = () => {
         setIsEditing(true);
         setEditText(todo.text);
     };
-
     const handleSave = () => {
         if (editText.trim()) {
             onUpdate(todo.id, editText.trim());
         }
         setIsEditing(false);
     };
-
     const handleCancel = () => {
         setEditText(todo.text);
         setIsEditing(false);
     };
-
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             handleSave();
@@ -30,7 +25,6 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
             handleCancel();
         }
     };
-
     const getPriorityIcon = (priority) => {
         switch (priority) {
             case 'high': return '🔴';
@@ -39,18 +33,15 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
             default: return '⚪';
         }
     };
-
     const getPriorityClass = (priority) => {
         return `priority-${priority}`;
     };
-
     return (
         <Draggable draggableId={todo.id} index={index}>
             {(provided, snapshot) => (
                 <div
-                    className={`todo-item ${todo.completed ? 'completed' : ''} ${
-                        snapshot.isDragging ? 'dragging' : ''
-                    } ${getPriorityClass(todo.priority)}`}
+                    className={`todo-item ${todo.completed ? 'completed' : ''} ${snapshot.isDragging ? 'dragging' : ''
+                        } ${getPriorityClass(todo.priority)}`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                 >
@@ -61,7 +52,6 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
                         >
                             ⋮⋮
                         </div>
-
                         <div className="todo-checkbox">
                             <input
                                 type="checkbox"
@@ -70,7 +60,6 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
                                 className="checkbox"
                             />
                         </div>
-
                         <div className="todo-text-container">
                             {isEditing ? (
                                 <input
@@ -87,11 +76,10 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
                                     className="todo-text"
                                     onDoubleClick={handleEdit}
                                 >
-                  {todo.text}
-                </span>
+                                    {todo.text}
+                                </span>
                             )}
                         </div>
-
                         <div className="todo-priority">
                             <select
                                 value={todo.priority}
@@ -104,7 +92,6 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
                                 <option value="high">🔴 Высокий</option>
                             </select>
                         </div>
-
                         <div className="todo-actions">
                             <button
                                 className="edit-btn"
@@ -122,7 +109,6 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onUpdate, onChangePriority 
                             </button>
                         </div>
                     </div>
-
                     <div className="priority-indicator">
                         {getPriorityIcon(todo.priority)}
                     </div>

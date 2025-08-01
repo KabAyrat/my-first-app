@@ -1,8 +1,6 @@
-// src/components/TodoList.jsx
 import React from 'react';
 import { Droppable } from '@hello-pangea/dnd';
 import TodoItem from './TodoItem';
-
 const TodoList = ({ todos, onToggle, onDelete, onUpdate, onChangePriority }) => {
     return (
         <Droppable droppableId="todos">
